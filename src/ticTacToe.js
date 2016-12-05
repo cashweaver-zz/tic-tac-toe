@@ -34,9 +34,9 @@ class TicTacToeGame {
   printReferenceBoard() {
     console.log('Reference Board');
     this.printBoard([
-      [1, 2, 3],
-      [4, 5, 6],
-      [7, 8, 9],
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
     ]);
     console.log('');
   }
@@ -111,13 +111,20 @@ class TicTacToeGame {
     return thereIsAWinner;
   }
 
+  makeMove(squareIndex) {
+    const row = Math.floor(squareIndex / 3);
+    const col = squareIndex % 3;
+
+    this.board[row][col] = this.marks[`player${this.curPlayer}`];
+  }
+
   nextRound() {
     this.printGameBoard();
     this.printReferenceBoard();
 
     console.log(`Player ${this.curPlayer}'s move!'`);
     prompt.get(['choice'], (err, result) => {
-      console.log(result);
+      this.makeMove(result.choice);
 
       const winner = this.determineWinner();
       if (!winner) {
