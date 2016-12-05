@@ -4,7 +4,8 @@
   "description": "> Tic Tac Toe implemented as a CLI NodeJS application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/ticTacToe.js",
+    "test": "mocha src/ticTacToe.test.js"
   },
   "author": "",
   "license": "ISC",
