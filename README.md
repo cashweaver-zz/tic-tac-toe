@@ -4,4 +4,10 @@
 
 ## Gameplay Instructions
 
-> Todo
+```sh
+npm start
+```
+
+## Todo
+
+[ ] Ensure the square the player selects is available
