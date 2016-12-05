@@ -1,16 +1,33 @@
 // Tic Tac Toe
 
+class TicTacToeGame {
+  constructor() {
+  }
 
-const printBoard = (board) => {
-  // MVP print. I'll add some ASCII art later.
-  board.forEach((row) => {
-    console.log(row);
-  })
-};
+  printBoard() {
+    // MVP print. I'll add some ASCII art later.
+    this.board.forEach((row) => {
+      console.log(row);
+    });
+  }
 
-const board = [
-  [' ', ' ', ' '],
-  [' ', ' ', ' '],
-  [' ', ' ', ' '],
-];
-printBoard(board);
+  buildNewBoard() {
+    this.board = [
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+    ];
+  }
+
+  startNewGame() {
+    this.buildNewBoard();
+    this.printBoard();
+  }
+
+  play() {
+    this.startNewGame();
+  }
+}
+
+const ttt = new TicTacToeGame();
+ttt.play();
