@@ -1,14 +1,37 @@
-// Tic Tac Toe
+const prompt = require('prompt');
 
 class TicTacToeGame {
-  constructor() {
+  constructor(board) {
+    if (board !== undefined) {
+      this.board = board;
+    }
   }
 
-  printBoard() {
+  play() {
+    this.startNewGame();
+  }
+
+  printBoard(board) {
     // MVP print. I'll add some ASCII art later.
-    this.board.forEach((row) => {
+    board.forEach((row) => {
       console.log(row);
     });
+  }
+
+  printGameBoard() {
+    console.log('Game Board');
+    this.printBoard(this.board);
+    console.log('');
+  }
+
+  printReferenceBoard() {
+    console.log('Reference Board');
+    this.printBoard([
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ]);
+    console.log('');
   }
 
   buildNewBoard() {
@@ -19,15 +42,23 @@ class TicTacToeGame {
     ];
   }
 
-  startNewGame() {
-    this.buildNewBoard();
-    this.printBoard();
+  determineWinner() {
+    const thereIsAWinner = false;
+
+    return 'x';
   }
 
-  play() {
-    this.startNewGame();
+  startNewGame() {
+    this.buildNewBoard();
+    this.printGameBoard();
+    this.printReferenceBoard();
+    prompt.get(['choice'], (err, result) => {
+      console.log(result);
+    });
   }
 }
 
-const ttt = new TicTacToeGame();
-ttt.play();
+//const ttt = new TicTacToeGame();
+//ttt.play();
+
+module.exports = TicTacToeGame;
