@@ -2,6 +2,11 @@ const prompt = require('prompt');
 
 class TicTacToeGame {
   constructor(board) {
+    this.marks = {
+      player1: 'X',
+      player2: 'O',
+      empty: ' ',
+    }
     if (board !== undefined) {
       this.board = board;
     }
@@ -35,17 +40,31 @@ class TicTacToeGame {
   }
 
   buildNewBoard() {
-    this.board = [
-      [' ', ' ', ' '],
-      [' ', ' ', ' '],
-      [' ', ' ', ' '],
-    ];
+    this.board = [];
+    for (let i = 0; i < 3; i += 1) {
+      this.board.push([]);
+      for (let j = 0; j < 3; j += 1) {
+        this.board[i].push(this.marks.empty);
+      }
+    }
   }
 
   determineWinner() {
-    const thereIsAWinner = false;
+    let thereIsAWinner = false;
 
-    return 'x';
+    if (!thereIsAWinner) {
+      this.board.forEach((row) => {
+        const topRowWinner = row.reduce((allSame, curVal) => (
+          (allSame === curVal && curVal !== ' ') ? curVal : null
+        ));
+
+        if (topRowWinner) {
+          thereIsAWinner = topRowWinner;
+        }
+      });
+    }
+
+    return thereIsAWinner;
   }
 
   startNewGame() {
