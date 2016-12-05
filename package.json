@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/ticTacToe.js",
-    "test": "mocha src/ticTacToe.test.js"
+    "test": "mocha src/ticTacToe.test.js --bail"
   },
   "author": "",
   "license": "ISC",

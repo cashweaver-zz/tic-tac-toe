@@ -52,6 +52,7 @@ class TicTacToeGame {
   determineWinner() {
     let thereIsAWinner = false;
 
+    // Check rows
     if (!thereIsAWinner) {
       this.board.forEach((row) => {
         const topRowWinner = row.reduce((allSame, curVal) => (
@@ -62,6 +63,46 @@ class TicTacToeGame {
           thereIsAWinner = topRowWinner;
         }
       });
+    }
+
+    // Check columns
+    if (!thereIsAWinner) {
+      for (let columnIndex = 0; columnIndex < this.board[0].length; columnIndex += 1) {
+        let allSame = this.board[0][columnIndex];
+        for (let rowIndex = 1; rowIndex < this.board.length; rowIndex += 1) {
+          const curVal = this.board[rowIndex][columnIndex];
+          allSame = (allSame === curVal && curVal !== ' ') ? curVal : null
+        }
+
+        if (allSame) {
+          thereIsAWinner = allSame;
+        }
+      }
+    }
+
+    // Diagonal left-right
+    if (!thereIsAWinner) {
+      let allSame = this.board[0][0];
+      for (let i = 1; i < this.board.length; i += 1) {
+        const curVal = this.board[i][i];
+        allSame = (allSame === curVal && curVal !== ' ') ? curVal : null
+      }
+
+      if (allSame) {
+        thereIsAWinner = allSame;
+      }
+    }
+
+    // Diagonal right-left
+    if (!thereIsAWinner) {
+      let allSame = (
+        (this.board[0][2] === this.board[1][1]) &&
+        (this.board[1][1] === this.board[2][0]));
+
+
+      if (allSame) {
+        thereIsAWinner = this.board[0][2];
+      }
     }
 
     return thereIsAWinner;
