@@ -6,7 +6,9 @@ class TicTacToeGame {
       player1: 'X',
       player2: 'O',
       empty: ' ',
-    }
+    };
+    this.curPlayer = 1;
+
     if (board !== undefined) {
       this.board = board;
     }
@@ -96,6 +98,7 @@ class TicTacToeGame {
     // Diagonal right-left
     if (!thereIsAWinner) {
       let allSame = (
+        (this.board[0][2] !== ' ') &&
         (this.board[0][2] === this.board[1][1]) &&
         (this.board[1][1] === this.board[2][0]));
 
@@ -108,17 +111,29 @@ class TicTacToeGame {
     return thereIsAWinner;
   }
 
-  startNewGame() {
-    this.buildNewBoard();
+  nextRound() {
     this.printGameBoard();
     this.printReferenceBoard();
+
+    console.log(`Player ${this.curPlayer}'s move!'`);
     prompt.get(['choice'], (err, result) => {
       console.log(result);
+
+      const winner = this.determineWinner();
+      if (!winner) {
+        this.curPlayer = (this.curPlayer === 1) ? 2 : 1;
+        this.nextRound();
+      } else {
+        console.log(`${winner} won!`);
+      }
     });
   }
-}
 
-//const ttt = new TicTacToeGame();
-//ttt.play();
+  startNewGame() {
+    this.buildNewBoard();
+
+    this.nextRound();
+  }
+}
 
 module.exports = TicTacToeGame;

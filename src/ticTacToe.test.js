@@ -3,6 +3,16 @@ const TicTacToeGame = require('./ticTacToe');
 
 describe('Tic Tac Toe', () => {
   describe('Victory Conditions', () => {
+    describe('Empty', () => {
+      it('should not determine victory for anyone', () => {
+        const ttt = new TicTacToeGame([
+          [' ', ' ', ' '],
+          [' ', ' ', ' '],
+          [' ', ' ', ' '],
+        ]);
+        expect(ttt.determineWinner()).to.equal(false);
+      });
+    });
     describe('Rows', () => {
       describe('Top', () => {
         it('should determine victory for X', () => {
